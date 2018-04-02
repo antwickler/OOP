@@ -8,6 +8,6 @@ public class Square extends Polygon{
   
   public void calArea(){
     area = sides[0]*sides[0];
-    System.out.println(area);
+    System.out.println("Square area is: " + area);
   }
 }
