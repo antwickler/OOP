@@ -1,63 +1,21 @@
-public class Bicycle {
-
-     
-
-    // the Bicycle class has three fields
-
-    public int cadence;
-
-    public int gear;
-
-    public int speed;
-
-     
-
-    // the Bicycle class has one constructor
-
-    public Bicycle(int startCadence, int startSpeed, int startGear) {
-
-        gear = startGear;
-
-        cadence = startCadence;
-
-        speed = startSpeed;
-
+public class Bicycle implements Vehicle {
+    private int speed;
+    private int gear;
+    private int slow;
+    
+    public void changeGear(int a) {
+        gear = a;
     }
 
-     
-
-    // the Bicycle class has four methods
-
-    public void setCadence(int newValue) {
-
-        cadence = newValue;
-
+    public void speedUp(int a) {
+        speed = speed + a;   
     }
 
-     
-
-    public void setGear(int newValue) {
-
-        gear = newValue;
-
+    public void applyBrakes(int a) {
+        slow = speed - a;
     }
 
-     
-
-    public void applyBrake(int decrement) {
-
-        speed -= decrement;
-
+    public String toString() {
+        return "Gear: " + gear + " " + "SpeedUP: " + speed + " " + "Brakes: " + slow;
     }
-
-     
-
-    public void speedUp(int increment) {
-
-        speed += increment;
-
-    }
-
-     
-
 }
