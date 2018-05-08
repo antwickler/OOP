@@ -4,76 +4,65 @@ import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Calculate extends JFrame {
+public class Calculate implements ActionListener {
 
-	private JPanel pn;
-	private JLabel lb1, lb2, lb3;
-	private JTextField tf1, tf2, tf3;
-	private JButton bt1, bt2, bt3;
-
-	public Calculate() {
-
-    	makeGUI();
-    	resetCalculate();
-
-    	setSize(400,150);
-    	setResizable(false);
-	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    	setLocationRelativeTo(null);
-    	setVisible(true); 
+    JFrame f = new JFrame();
+    JLabel l1 = new JLabel("First number:");
+    JLabel l2 = new JLabel("Second number:");
+    JLabel l3 = new JLabel("Answer:");
+    
+    JTextField t1 = new JTextField("", 15);
+    JTextField t2 = new JTextField("", 15);
+    JTextField t3 = new JTextField("", 15);
+    
+    JButton b1 = new JButton("Multiply");
+    JButton b2 = new JButton("Divide");
+    JButton b3 = new JButton("Clear");
+    
+    Calculate() {
+        
+        f.add(l1);
+        f.add(t1);
+        f.add(l2);
+        f.add(t2);
+        f.add(l3);
+        f.add(t3);
+        
+        f.add(b1);
+        f.add(b2);
+        f.add(b3);
+        
+        b1.addActionListener(this);
+        b2.addActionListener(this);
+        b3.addActionListener(this);
+        
+        f.setLayout(new FlowLayout());
+        f.setVisible(true);
+        f.setSize(310,150);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
     }
+    
+    public void actionPerformed(ActionEvent e) {
 
-    private void makeGUI() {
-
-    	JPanel content = new JPanel();
-		content.setLayout(new BorderLayout(4,4));
-    	content.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-    	content.add(buildPanel(), BorderLayout.CENTER);
-    	content.add(buildOperationPanel(), BorderLayout.SOUTH);
-    	setContentPane(content); 
+        int n1 = Integer.parseInt(t1.getText());
+        int n2 = Integer.parseInt(t2.getText());
+        
+        if(e.getSource() == b1) {
+            t3.setText(String.valueOf(n1 * n2));
+        }
+            
+        else if(e.getSource() == b2) {
+            t3.setText(String.valueOf(n1 / n2));
+        }
+        
+        else if(e.getSource() == b3) {
+            t1.setText("");
+            t2.setText("");
+            t3.setText("");
+        }
     }
-
-    private JPanel buildPanel() {
-
-		JPanel panel = new JPanel();
-    	panel.setLayout(new GridLayout(4,2));
-
-		lb1 = new JLabel("First number:");
-		tf1 = new JTextField("", 15);
-		lb2 = new JLabel("Second number:");
-		tf2 = new JTextField("", 15);
-		lb3 = new JLabel("Answer:");
-		tf3 = new JTextField("", 15);
-
-		panel.add(lb1);
-		panel.add(tf1);
-		panel.add(lb2);
-		panel.add(tf2);
-		panel.add(lb3);
-		panel.add(tf3);
+    
+    public static void main(String[] args) {
+        new Calculate();
     }
-
-    private JPanel buildOperationPanel() {
-
-    	JPanel opPanel = new JPanel();
-		bt1 = new JButton("Multiply");
-		bt2 = new JButton("Divide");
-		bt3 = new JButton("Clear");
-
-		bt1.addActionListener();
-		bt2.addActionListener();
-		bt3.addActionListener();
-
-		opPanel.add(bt1);
-		opPanel.add(bt2);
-		opPanel.add(bt3);
-    }
-
-    private void resetCalculate() {
-
-  	}
-
-	public static void main(String[] args) {
-		new Calculate();
-	}
 }
